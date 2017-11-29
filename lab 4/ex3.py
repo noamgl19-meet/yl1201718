@@ -8,5 +8,5 @@ class Person(object):
 	def favorite_breakfast(self, favorite_breakfast):
 		self.favorite_breakfast = favorite_breakfast
 		print("yum! " + self.name + " has eaten "+ favorite_breakfast)
-person = Person("nick", 32, "male", "New yorck")
-person.favorite_breakfast("cake!")
+person = Person("Dan", 32, "male", "New yorck")
+person.favorite_breakfast("Eggs")
