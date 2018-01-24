@@ -1,6 +1,7 @@
 from turtle import *
 import random
 import math
+import time
 circles = []
 randpos = random.randint(-250,250)
 class Ball(Turtle):
@@ -13,13 +14,13 @@ class Ball(Turtle):
 		self.speed(speed)
 circle1 = Ball(20,"red", 7)
 circles.append(circle1)
-circle1.goto(100,100)
+circle1.goto(randpos,randpos)
 circle2 = Ball(30,"blue", 5)
 circles.append(circle2)
-circle2.goto(-100,96)
+circle2.goto(randpos,randpos)
 circle3 = Ball(35,"orange", 7)
 circles.append(circle3)
-circle3.goto(-100,96)
+circle3.goto(randpos,randpos)
 # def check_collision(circle1,circle2):
 # 	x = circle2.xcor() - circle1.xcor()
 # 	new_x = math.pow(x,2)
@@ -33,6 +34,7 @@ circle3.goto(-100,96)
 # 		print("not colide")
 # check_collision(circle2,circle1)
 def pair_collisions(circles):
+	global randpos, turtle
 	for x in circles:
 		for y in circles:
 			if x != y:
@@ -44,8 +46,13 @@ def pair_collisions(circles):
 				if sum <= x.radius + y.radius:
 					print("there was a collision")
 					y.goto(randpos, randpos)
+					randpos = random.randint(-250,250)
+
+
 					break
 				else:
 					print("no collision")
+				randpos = random.randint(-250,250)
+	ontimer(pair_collisions, 100)
 pair_collisions(circles)
 mainloop()
