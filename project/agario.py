@@ -1,4 +1,5 @@
 
+
 from turtle import *
 import time
 import random
@@ -6,9 +7,13 @@ from ball import *
 import math
 title("BAGAR IO")
 writing = clone()
-
+SCREEN_WIDTH = getcanvas().winfo_width()/2
+SCREEN_HEIGHT = getcanvas().winfo_height()/2
+score_X = SCREEN_WIDTH +10
+score_Y = SCREEN_HEIGHT - 5
 points = 0
 def main():
+	global score_X,score_Y
 	clearscreen()
 	clear()
 
@@ -51,11 +56,11 @@ def main():
 	score.color("goldenrod")
 
 	score.pu()
-	score.goto(1050/2,625/2)
+	score.goto(score_X,score_Y)
 
 	
 	score.pd()
-	score.write("Score: "+str(points),font = ("Arial",30,"bold") ,align="center")
+	score.write("Score: "+str(points),font = ("Purisa",30,"bold") ,align="center")
 	#score end
 	#TODO: Make a new function that spawns new enemies
 	#smooth
@@ -176,7 +181,7 @@ def main():
 		score.pu()
 		score.goto(0,-150)
 		score.pd()
-		score.write("Grade: "+grade,font = ("DejaVuSerif",25,"bold") ,align="center")
+		score.write("Grade: "+grade,font = ("Purisa",25,"bold") ,align="center")
 		score.color("mediumaquamarine")
 
 		time.sleep(5)
@@ -368,10 +373,10 @@ def main():
 				score.clear()
 				score.pu()
 				
-				score.goto(1050/2,625/2)
+				score.goto(score_X,score_Y)
 
 				score.pd()
-				score.write("Score: "+str(points),font = ("Arial",30,"bold") ,align="center")
+				score.write("Score: "+str(points),font = ("Purisa",30,"bold") ,align="center")
 				getscreen().update()
 		#going through the balls list
 		for i in BALLS:
@@ -423,7 +428,7 @@ def main():
 		
 		timeWrite.pd()
 		timeScore = int(time.clock() * 2)
-		timeWrite.write("Time: " + str(timeScore), False, "left", ("Arial", 20, "bold"))
+		timeWrite.write("time: " + str(timeScore), False, "left", ("Purisa", 30, "bold"))
 		
 	#making the player move by hovering with the mouse function
 	def movearound():
@@ -431,7 +436,7 @@ def main():
 		#getting the position of the mouse and saving it as the new player positions
 		old_x = MY_BALL.x
 		old_y = MY_BALL.y
-		mouse_x = getcanvas().winfo_pointerx() - SCREEN_WIDTH
+		mouse_x = (getcanvas().winfo_pointerx() - SCREEN_WIDTH)
 		mouse_y = (-getcanvas().winfo_pointery() + SCREEN_HEIGHT)
 		MY_BALL.dvx = MY_BALL.dx*((mouse_x - old_x)/VecSpeed)
 		MY_BALL.dvy = MY_BALL.dy*((mouse_y - old_y)/VecSpeed)
@@ -442,6 +447,7 @@ def main():
 
 
 	def lose():
+		timepoint = timeScore
 		MY_BALL.ht()
 		score.ht()
 		score.pu()
@@ -473,7 +479,7 @@ def main():
 		score.goto(-SCREEN_WIDTH + 70 , -SCREEN_HEIGHT )
 		score.st()
 		score.pd()
-		score.write("Score: " + str(points),font = ("KacstDecorative",20,"bold") ,align="center")
+		score.write("Score: " + str(points),font = ("Purisa",20,"bold") ,align="center")
 		
 		time.sleep(5)
 		clear()
@@ -521,27 +527,31 @@ def instructions():
 	writing.pu()
 	writing.goto(0,20)
 	writing.pd()
+	writing.pencolor("black")
+
 	writing.write("BAGAR IO", font = ("Purisa", 150,"bold"), align = "center")
 	writing.pu()
 	writing.goto(0,0)
 	writing.pd()
-	writing.write("*Goal: reach a certain size without getting eaten", font = ("DejaVuSansMono", 22,"bold"), align = "center")
+	writing.pencolor("white")
+
+	writing.write("*Goal: reach a certain size without getting eaten", font = ("Purisa", 22,"bold"), align = "center")
 	writing.pu()
 	writing.goto(0,-50)
 	writing.pd()
-	writing.write("*move with the mouse", font = ("DejaVuSansMono", 22,"bold"), align = "center")
+	writing.write("*move with the mouse", font = ("Purisa", 22,"bold"), align = "center")
 	writing.pu()
 	writing.goto(0,-100)
 	writing.pd()
-	writing.write("*watch out from the evil balls, they might be smaller, but they will eat you", font = ("DejaVuSansMono", 17,"bold"), align = "center")
+	writing.write("*watch out from the evil balls, they might be smaller, but they will eat you", font = ("Purisa", 17,"bold"), align = "center")
 	writing.pu()
 	writing.goto(0,-150)
 	writing.pd()
-	writing.write("*you can change the background colors, by trying different keys on keyboard", font = ("DejaVuSansMono", 17,"bold"), align = "center")
+	writing.write("*you can change the background colors, by trying different keys on keyboard", font = ("Purisa", 17,"bold"), align = "center")
 	writing.pu()
 	writing.goto(0,-200)
 	writing.pd()
-	writing.write("*to go back to the menu, press '1'", font = ("DejaVuSansMono", 22,"bold"), align = "center")	
+	writing.write("*to go back to the menu, press '1'", font = ("Purisa", 22,"bold"), align = "center")	
 	onkey(menu,"1")
 	listen()
 def menu():
@@ -556,22 +566,26 @@ def menu():
 	writing.pu()
 	writing.goto(0,40)
 	writing.pd()
+	writing.pencolor("black")
+
 	writing.write("BAGAR IO",font = ("Purisa",150,"bold"), align = "center")
 	time.sleep(0.5)
 	writing.pu()
 	writing.goto(0,10)
 	writing.pd()
-	writing.write("start game(1)", font = ("DejaVuSansMono", 30,"bold"), align = "center")
+	writing.pencolor("white")
+
+	writing.write("start game(1)", font = ("Purisa", 30,"bold"), align = "center")
 	time.sleep(0.5)
 	writing.pu()
 	writing.goto(0,-50)
 	writing.pd()
-	writing.write("instructions(2)", font = ("DejaVuSansMono", 30,"bold"), align = "center")
+	writing.write("instructions(2)", font = ("Purisa", 30,"bold"), align = "center")
 	time.sleep(0.5)
 	writing.pu()
 	writing.goto(0,-110)
 	writing.pd()
-	writing.write("quit(3)", font = ("DejaVuSansMono", 30,"bold"), align = "center")
+	writing.write("quit(3)", font = ("Purisa", 30,"bold"), align = "center")
 
 	onkey(main,"1")
 	onkey(instructions, "2")
