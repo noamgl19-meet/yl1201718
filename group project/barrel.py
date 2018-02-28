@@ -4,6 +4,9 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 left_edge = -SCREEN_WIDTH/2 + 50
 right_edge = SCREEN_WIDTH/2 - 50
+register_shape("barrel.gif")
+shapeSize = 40
+newSize = shapeSize/2 - 10
 class Barrel(Turtle):
 
 	def __init__(self,is_special):
@@ -14,16 +17,30 @@ class Barrel(Turtle):
 		self.x = SCREEN_WIDTH/2 -30
 		self.y = 360
 		self.r = 5
+		self.pu()
+		self.goto(right_edge + 50,95 + newSize)
 
 		# dont forget to set the shape to the crawling shape
 
 	def crawl(self):
 		self.pu()
 		self.speed(1)
-		self.goto(right_edge + 50,95)
+		self.ht()
+		self.st()
+		self.shape("barrel.gif")
+
+		self.goto(left_edge + 50,45 + newSize)
+		self.goto(left_edge + 50, -5 + newSize)
+		self.goto(right_edge - 50, -55 + newSize)
+		self.goto(right_edge - 50, -105 + newSize)
+		self.goto(left_edge + 50, -155 + newSize)
 		
-		self.goto(left_edge + 50,45)
-		self.goto(left_edge + 50, -5)
+		self.goto(left_edge + 50, -205 + newSize)
+		self.goto(right_edge - 50, -255 + newSize)
+		self.goto(right_edge - 50, -305 + newSize)
+		self.goto(left_edge + 120, -SCREEN_HEIGHT/2 + newSize)
+		self.goto(left_edge, -SCREEN_HEIGHT/2 + newSize)
+		self.ht()
 
 	def next(floors,i):
 

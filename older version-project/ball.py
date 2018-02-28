@@ -40,6 +40,8 @@ class Ball(Turtle):
 		#ddeclairing the other atributes
 		self.dx = dx
 		self.dy = dy
+		self.dvx = dx
+		self.dvy = dy
 		self.r = r
 		#setting the shape to a circle
 		self.shape("circle")
@@ -55,11 +57,15 @@ class Ball(Turtle):
 		#getting the current x
 		current_x = self.x
 		#getting the new x position(the last position + the dx)
-		new_x = current_x + self.dx
+		new_x = current_x + self.dvx
+		self.x = new_x
+
 		#getting the current y
 		current_y = self.y
 		#getting the new y position(the last y position + dy)
-		new_y = current_y + self.dy
+		new_y = current_y + self.dvy
+		self.y = new_y
+
 		#getting the sides of the ball
 		#right
 		right_side_ball = new_x + self.r
@@ -70,16 +76,15 @@ class Ball(Turtle):
 		#down
 		bottom_side_ball = new_y - self.r
 		#going to the new cordination
-		self.x = new_x
-		self.y = new_y
-		self.goto(new_x,new_y)
 
 		# checking if it is out of borders
 		if right_side_ball >= screen_width:
-			self.dx = -self.dx
+			self.dvx = -self.dvx
 		if left_side_ball <= -screen_width:
-			self.dx = -self.dx
+			self.dvx = -self.dvx
 		if top_side_ball >= screen_height:
-			self.dy = -self.dy
+			self.dvy = -self.dvy
 		if bottom_side_ball <= -screen_height:
-			self.dy = -self.dy
+			self.dvy = -self.dvy
+			
+		self.goto(new_x,new_y)
